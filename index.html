@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Weekend Trips</title>
+  <meta name="description" content="Day trips from home ranked by weather, prayer times and heat.">
+  <meta name="theme-color" content="#2f6f4f" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111714" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Weekend Trips">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="icon" type="image/png" href="icon-180.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-row">
+      <div>
+        <button class="eyebrow linkish" id="origin-label" type="button">Set your home</button>
+        <h1>Weekend Trips</h1>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="refresh" aria-label="Refresh forecast">↻</button>
+        <button class="icon-btn" id="open-settings" aria-label="Settings">⚙︎</button>
+      </div>
+    </div>
+    <p class="sub" id="status">Loading forecast…</p>
+    <nav class="seg" id="week-seg" aria-label="Which weekend">
+      <button data-week="0" class="on">This weekend</button>
+      <button data-week="1">Next weekend</button>
+    </nav>
+  </header>
+
+  <nav class="tabs" id="day-tabs" aria-label="Day"></nav>
+
+  <main id="list" aria-live="polite"></main>
+
+  <details class="dropped" id="dropped" hidden>
+    <summary>Why some places aren't listed</summary>
+    <ul id="dropped-list"></ul>
+  </details>
+
+  <footer class="foot">
+    Weather: Open-Meteo. Prayer times worked out on the phone.
+    Drive times: OSRM routing, without live traffic. Always check park alerts before you go.
+  </footer>
+
+  <dialog id="settings">
+    <form method="dialog" id="settings-form">
+      <h2>Settings</h2>
+      <div class="home-row">
+        <div><span class="lbl">Home</span><b id="settings-home">Not set</b></div>
+        <button type="button" class="ghost small" id="change-home">Change</button>
+      </div>
+      <label>Home by (morning trips)
+        <input type="time" name="homeBy" step="900">
+      </label>
+      <label>Longest drive, one way: <output id="maxDrive-out"></output> min
+        <input type="range" name="maxDrive" min="30" max="120" step="5">
+      </label>
+      <label>Longest drive for sunrise trips: <output id="maxSunriseDrive-out"></output> min
+        <input type="range" name="maxSunriseDrive" min="30" max="120" step="5">
+      </label>
+      <label>Too hot above ("feels like"): <output id="maxFeels-out"></output>°C
+        <input type="range" name="maxFeels" min="24" max="38" step="1">
+      </label>
+      <label>Prayer calculation method
+        <select name="method"></select>
+      </label>
+      <label>Asr time
+        <select name="asrFactor">
+          <option value="2">Hanafi (later)</option>
+          <option value="1">Standard: Shafi'i, Maliki, Hanbali (earlier)</option>
+        </select>
+      </label>
+      <div class="row">
+        <button value="cancel" class="ghost">Cancel</button>
+        <button value="save" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="home-dlg">
+    <form method="dialog" id="home-form">
+      <h2>Where do you live?</h2>
+      <p class="hint">Drive times and prayer times are worked out from here. It stays on this phone.</p>
+      <input type="search" name="q" placeholder="Type your suburb, e.g. Parramatta" autocomplete="off" enterkeyhint="search">
+      <ul class="results" id="home-results"></ul>
+      <div class="row"><button value="cancel" class="ghost" id="home-cancel">Cancel</button></div>
+    </form>
+  </dialog>
+
+  <template id="card-tpl">
+    <article class="card">
+      <div class="card-band">
+        <span class="kind"></span>
+        <span class="score" title="Match score"></span>
+      </div>
+      <div class="card-body">
+      <div class="title-row">
+        <div>
+          <h3 class="name"></h3>
+          <p class="area"></p>
+        </div>
+        <div class="temp"><b></b><span></span></div>
+      </div>
+      <p class="wx"></p>
+      <ul class="facts"></ul>
+      <ol class="timeline"></ol>
+      <ul class="reasons"></ul>
+      <ul class="prayer"></ul>
+      <div class="actions">
+        <a class="btn primary directions" target="_blank" rel="noopener">Directions</a>
+        <a class="btn ghost gmaps" target="_blank" rel="noopener">Google Maps</a>
+        <a class="btn ghost alerts" target="_blank" rel="noopener">Park alerts</a>
+      </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="places.js"></script>
+  <script src="core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

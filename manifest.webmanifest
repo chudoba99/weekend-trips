@@ -1,0 +1,14 @@
+{
+  "name": "Weekend Trips",
+  "short_name": "Weekend Trips",
+  "description": "Day trips from home ranked by weather, prayer times and heat.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f2ec",
+  "theme_color": "#2f6f4f",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
