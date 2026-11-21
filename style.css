@@ -94,7 +94,13 @@ h1 { font-size: 32px; line-height: 1.05; margin: 0; letter-spacing: -0.025em; fo
 .k-evening .card-band { background: var(--g-evening); }
 .k-sunset  .card-band { background: var(--g-sunset); }
 .kind { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; text-shadow: 0 1px 2px rgb(0 0 0 / 0.15); }
-.score { font-size: 12px; font-weight: 600; background: rgb(255 255 255 / 0.25); border-radius: 999px; padding: 3px 9px; }
+.score {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.03em; border-radius: 999px; padding: 3px 10px;
+  background: rgb(255 255 255 / 0.25); color: #fff;
+}
+.score.r-great { background: #fff; color: #1f3a2c; }
+.score.r-great::before { content: "★ "; }
+.score.r-ok { background: rgb(0 0 0 / 0.18); }
 
 .top-pick .card-band { padding: 16px 16px 44px; }
 .top-pick .kind { font-size: 14px; }

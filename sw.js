@@ -1,6 +1,6 @@
 // Keeps the app's own files on the phone so it opens offline.
 // The forecast itself is saved by app.js, not here. Bump VERSION after changing any file.
-const VERSION = "wt-3";
+const VERSION = "wt-4";
 const FILES = ["./", "index.html", "style.css", "places.js", "core.js", "app.js",
   "manifest.webmanifest", "icon-180.png", "icon-512.png"];
 

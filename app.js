@@ -141,7 +141,10 @@
     el.classList.add(`k-${t.kind}`);
     const kind = el.querySelector(".kind");
     kind.textContent = `${KIND_ICON[t.kind]} ${isTop ? "Top pick · " : ""}${C.KIND_LABEL[t.kind]}`;
-    el.querySelector(".score").textContent = `${t.score} pts`;
+    const label = C.rating(t.score);
+    const badge = el.querySelector(".score");
+    badge.textContent = label;
+    badge.classList.add(`r-${label.toLowerCase()}`);
     el.querySelector(".name").textContent = t.place.name;
     el.querySelector(".area").textContent = `${t.place.area} · ${t.place.walk}`;
 

@@ -473,6 +473,13 @@ function bestOverall(trips, limit) {
 
 const KIND_LABEL = { morning: "Morning", sunrise: "Sunrise", evening: "Evening", sunset: "Sunset" };
 
+// Plain-word rating for a score. 100 = fine conditions with nothing for or against.
+function rating(score) {
+  if (score >= 115) return "Great";
+  if (score >= 100) return "Good";
+  return "OK";
+}
+
 function mapsLinks(place, platform) {
   const ll = `${place.lat},${place.lon}`;
   const q = encodeURIComponent(`${place.name} car park`);
@@ -487,6 +494,6 @@ const Core = {
   TZ, METHODS, DEFAULTS, KIND_LABEL,
   geocodeUrl, parseGeocode, drivesUrl, parseDrives, estimateDrive, withDrives,
   sydneyParts, sydneyTime, fmtTime, fmtDay, addMin, weekendDays,
-  prayerTimes, weatherUrl, parseWeather, planTrips, bestForDay, bestOverall, mapsLinks,
+  prayerTimes, weatherUrl, parseWeather, planTrips, bestForDay, bestOverall, mapsLinks, rating,
 };
 if (typeof module !== "undefined") module.exports = Core;
